@@ -1,65 +1,101 @@
 package org.ficha2902082.maven.parking.jordan;
-// importar dependencias
- import org.ficha2902082.maven.parking.jordan.entities.carro;
+
+import java.util.List;
 import org.ficha2902082.maven.parking.jordan.entities.Cliente;
-import org.ficha2902082.maven.parking.jordan.entities.TipoVehiculo;
+import org.ficha2902082.maven.parking.jordan.entities.Cupo;
+import org.ficha2902082.maven.parking.jordan.entities.Registro;
 import org.ficha2902082.maven.parking.jordan.entities.TipoDocumento;
+import org.ficha2902082.maven.parking.jordan.entities.TipoVehiculo;
+import org.ficha2902082.maven.parking.jordan.entities.carro;
+import java.util.ArrayList;
+import java.time.*;
+
 
 public class Main {
     public static void main(String[] args) {
-       //crear 2 instancias
-       //de la clase carro
-       carro carrito1 = new carro();
-       carrito1.placa = "ASB 345";
-       carrito1.tipoVehiculo = TipoVehiculo.CAMIONETA;
 
-       carro carrito2 = new carro();
-       carrito2.placa = "PAZ 987";
-       carrito2.tipoVehiculo = TipoVehiculo.CARRO;
+      //crear 2 cupos
+      //instanciar 2 cupos
+     Cupo espacio1 = new Cupo();
+     espacio1.ancho = 1.0;
+     espacio1.largo = 4.5;
+     espacio1.letra = 'A'; 
 
-       carro carrito3 = new carro();
-       carrito3.placa = "PAZ 987";
-       carrito3.tipoVehiculo = TipoVehiculo.MOTO;
+     Cupo espacio2 = new Cupo('B', 5.0, 2.5);
 
-       carro carrito4 = new carro();
-       carrito4.placa = "MIO 456";
-       carrito4.tipoVehiculo = TipoVehiculo.CAMION;
+     //intanciar 2 carros
+     carro vehiculo1 = new carro("ABC 123", TipoVehiculo.TAXI);
+     carro vehiculo2 = new carro("OJB 567", TipoVehiculo.MOTO);
 
-       Cliente conductor1 = new Cliente();
-       conductor1.nombre = "Brayan";
-       conductor1.apellidos = "Jimenez";
-       conductor1.tipoDocumento = TipoDocumento.CM;
-       conductor1.numeroDocumento = 20304179L;
-       conductor1.celular = 3003353480L;
+     //instanciar un cliente
+     Cliente conductor = new Cliente("Julian", "Gonzalez",TipoDocumento.CC, 1011201296L, 3003353480L);
 
-       //añadir carros al cliente
-       //invocar,llamar,ejecutar 
-       //el metodo addCar
+     //vincular carro al cliente
 
-       conductor1.addCar(carrito1);
+     conductor.addCar(vehiculo2);
+     conductor.addCar(vehiculo1);
+     conductor.addCar("ABs 345", TipoVehiculo.CARRO);
 
-       conductor1.addCar(carrito2);
+     //declarar una lista de registros
 
-       conductor1.addCar("PAZ 987", TipoVehiculo.MOTO);
-       
+     List <Registro> misRegistros = new ArrayList<>();
 
-       System.out.println("Cliente: " + conductor1.nombre);
-       System.out.println("documento: "  + conductor1.numeroDocumento);
-       System.out.println("vehiculo:");
-       for ( carro c : conductor1.misCarros ) {
-        System.out.println("placa:" + c.placa);
-        System.out.println("tipo:" + c.tipoVehiculo);
-        System.out.println("__________________");
-       }
+     //instanciar 2 registros E/S
 
-    
+     Registro lista1 = new Registro(
+       LocalDate.of(2024,Month.FEBRUARY,3),
+       LocalTime.of(15, 30, 34),
+       LocalDate.of(2024, Month.FEBRUARY, 20),
+       LocalTime.of(6, 30, 23),
+       50000.00,
+       conductor.misCarros.get(0),
+       espacio1
+     );
 
-       Cliente conductor2 = new Cliente();
-       conductor2.nombre = "sara";
-       conductor2.apellidos = "angarita";
-       conductor2.tipoDocumento = TipoDocumento.CC;
-       conductor1.numeroDocumento = 1011201296L;
-       conductor1.celular = 3118020455L;
+     Registro lista2 = new Registro(
+        LocalDate.of(2024,Month.JANUARY, 31),
+        LocalTime.of(7, 15, 10),
+        LocalDate.of(2024, Month.FEBRUARY, 2),
+        LocalTime.of(12, 36, 45),
+        45000.00,
+        conductor.misCarros.get(0),
+        espacio2
+
+     );
+
+     //vincular los registros a la lista
+     //de registros
+     
+     misRegistros.add(lista1);
+
+     misRegistros.add(lista2);
+
+     //recorrer la lista de registros
+
+     for(Registro r : misRegistros){
+
+        System.out.println(" placa: " + 
+        r.carro.placa + "/" + 
+        "Cupo" + 
+        r.cupo.letra + "/" +
+        "valor:" + 
+        r.valor + "/" + 
+        "Fecha inicio" +
+        r.fechaInicio.toString() + 
+        "/" + 
+        "Hora inico" +
+        r.horaInicio.toString() + 
+        "/" + 
+        "Fecha fin" + 
+        r.fechaFin.toString() +
+        "/" +
+        "hora fin" +
+        r.horaFin.toString() 
+        );
+
+     }
 
     }
+    
+    
 }

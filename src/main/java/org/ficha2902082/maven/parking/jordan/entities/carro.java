@@ -10,7 +10,15 @@ public class carro {
     //   (camel case)
     
     public String placa;
-    public TipoVehiculo tipoVehiculo;  
+    public TipoVehiculo tipoVehiculo;
+    public carro() {
+    }
+    public carro(String placa, TipoVehiculo tipoVehiculo) {
+        this.placa = placa;
+        this.tipoVehiculo = tipoVehiculo;
+    } 
+    
+    
     
         
     

@@ -36,6 +36,22 @@ public class Cliente {
         this.misCarros.add(c);
 
     }
+
+    public Cliente() {
+    }
+
+    public Cliente(String nombre, String apellidos, TipoDocumento tipoDocumento, Long numeroDocumento, Long celular) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.tipoDocumento = tipoDocumento;
+        this.numeroDocumento = numeroDocumento;
+        this.celular = celular;
+        this.misCarros = new ArrayList <carro> ();
+    }
+
+    
+
+
     
 
     //sobrecarga de metodos
